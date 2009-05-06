@@ -4,6 +4,11 @@
 (setq vendor-dir (concat dotfiles-dir "vendor/"))
 (add-to-list 'load-path vendor-dir)
 
+;; Disable Menubar
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
 ;; Anything.
 (add-to-list 'load-path (concat vendor-dir "anything-config"))
 (require 'anything-config)
@@ -26,6 +31,9 @@
 (setq org-agenda-files (list "~/Orgs/Home.org"
                              "~/Orgs/Notes.org"))
 
+;; yasnippet from elpa
+;; (require 'yasnippet-bundle)
+
 ;; My Journal.
 ;; (org-remember-insinuate)
 ;; (setq org-remember-templates
@@ -41,6 +49,9 @@
 ;; stop cursor from blinking
 (blink-cursor-mode nil)             
 
+;; Color Theme
+(color-theme-zenburn)
+
 ;;; Keybindings
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
@@ -52,3 +63,12 @@
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
+(global-set-key (kbd "<M-return>") 'rphillips/toggle-fullscreen)
+
+(defun rphillips/toggle-fullscreen ()
+  (interactive)
+  (set-frame-parameter nil
+                       'fullscreen
+                       (if (frame-parameter nil 'fullscreen)
+                           nil
+                         'fullboth)))
