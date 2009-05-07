@@ -21,6 +21,9 @@
 ;; psvn.el.
 (require 'psvn)
 
+;; line numbers
+(require 'linum)
+
 ;; Org-Mode
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (setq org-hide-leading-stars      t
@@ -32,7 +35,7 @@
                              "~/Orgs/Notes.org"))
 
 ;; yasnippet from elpa
-;; (require 'yasnippet-bundle)
+(require 'yasnippet-bundle)
 
 ;; My Journal.
 ;; (org-remember-insinuate)
@@ -52,6 +55,10 @@
 ;; Color Theme
 (color-theme-zenburn)
 
+;; No tabs
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 4);
+
 ;;; Keybindings
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
@@ -64,6 +71,25 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 (global-set-key (kbd "<M-return>") 'rphillips/toggle-fullscreen)
+(global-set-key "\M-?" 'etags-select-find-tag-at-point)
+(global-set-key "\M-." 'etags-select-find-tag)
+
+;;; Options
+(setq inhibit-startup-message t) ;; Disable start up message
+(setq search-highlight t) ;; Highlight search results
+(setq backup-inhibited t) ;; Never backup
+(setq line-number-mode 1) ;; Show line numbers
+(setq-default indent-tabs-mode nil) ;; Use spaces for tabs
+(setq visible-bell t) ;; Visable bells
+(setq show-paren-delay 0)           ; how long to wait?
+(show-paren-mode t)                 ; turn paren-mode on
+(setq show-paren-style 'expression) ; alternatives are 'parenthesis' and 'mixed'
+
+;; Kill without confirmation
+(defun kill-current-buffer ()
+ "Kill the current buffer, without confirmation."
+ (interactive)
+ (kill-buffer (current-buffer)))
 
 (defun rphillips/toggle-fullscreen ()
   (interactive)
@@ -72,3 +98,24 @@
                        (if (frame-parameter nil 'fullscreen)
                            nil
                          'fullboth)))
+
+;; Apache Style
+;; to use this style: C-c . apache
+(c-add-style "apache"
+ '((inclass . ++)
+   (defun-block-intro . ++)
+   (statement-block-intro . ++)
+   (substatement . ++)
+   (brace-list-intro . ++)
+   (statement-case-intro . ++)
+   (inextern-lang . 0)
+  ))
+
+;; Default C Style
+(setq c-default-style "apache")
+
+;; highlight the current line; set a custom face, so we can
+;; recognize from the normal marking (selection)
+(defface hl-line '((t (:background "#222222"))) "Face to use for `hl-line-face'." :group 'hl-line)
+(setq hl-line-face 'hl-line)
+(global-hl-line-mode t) ; turn it on for all modes by default
