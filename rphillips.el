@@ -41,7 +41,7 @@
                              "~/Orgs/Notes.org"))
 
 ;; yasnippet from elpa
-(require 'yasnippet-bundle)
+;; (require 'yasnippet-bundle)
 
 ;; My Journal.
 ;; (org-remember-insinuate)
