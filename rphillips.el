@@ -73,6 +73,7 @@
 (global-set-key (kbd "<M-return>") 'rphillips/toggle-fullscreen)
 (global-set-key "\M-?" 'etags-select-find-tag-at-point)
 (global-set-key "\M-." 'etags-select-find-tag)
+(global-set-key "\C-cb" 'anything)
 
 ;;; Options
 (setq inhibit-startup-message t) ;; Disable start up message
