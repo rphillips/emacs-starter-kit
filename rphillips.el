@@ -80,6 +80,7 @@
 (global-set-key "\M-?" 'etags-select-find-tag-at-point)
 (global-set-key "\M-." 'etags-select-find-tag)
 (global-set-key "\C-cb" 'anything)
+(global-set-key "\C-c\C-n" 'nav-toggle)
 
 ;;; Options
 (setq inhibit-startup-message t) ;; Disable start up message
