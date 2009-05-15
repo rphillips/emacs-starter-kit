@@ -24,6 +24,9 @@
 ;; line numbers
 (require 'linum)
 
+;; nav
+(require 'nav)
+
 ;; twitter
 (autoload 'twitter-get-friends-timeline "twitter" nil t)
 (autoload 'twitter-status-edit "twitter" nil t)
@@ -44,13 +47,16 @@
 ;; (require 'yasnippet-bundle)
 
 ;; My Journal.
-;; (org-remember-insinuate)
-;; (setq org-remember-templates
-;;       '(("Journal"
-;;          ?j
-;;          "* %U %? %^g\n\n   %x"
-;;          "~/Orgs/Journal.org"
-;;          'top)))
+ (require 'remember)
+     (setq remember-annotation-functions '(org-remember-annotation))
+     (setq remember-handler-functions '(org-remember-handler))
+     (add-hook 'remember-mode-hook 'org-remember-apply-template)
+
+(setq org-remember-templates
+      '(("Journal" ?j "* %U %? %^g\n\n   %x" "~/Orgs/Journal.org" 'top)
+       ("todo" ?t "* TODO %?\n  %i\n  %a" "~/Orgs/Tasks.org" "Tasks")
+       ("notes" ?n "* %?\n  %i\n  %a" "~/Orgs/Notes.org" "Inbox and Notes")
+       ))
 
 ;; Follow git commit message best practices in Magit.
 (add-hook 'magit-log-edit-mode-hook (lambda () (setq fill-column 72)))
@@ -68,6 +74,7 @@
 ;;; Keybindings
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cr" 'org-remember)
 (global-set-key "\C-xk" 'kill-current-buffer) ;; Kill without confirmation
 (global-set-key "\M-l" 'goto-line)
 (global-set-key (kbd "C-x g") 'magit-status)
