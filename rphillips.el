@@ -53,7 +53,7 @@
      (add-hook 'remember-mode-hook 'org-remember-apply-template)
 
 (setq org-remember-templates
-      '(("Journal" ?j "* %U %? %^g\n\n   %x" "~/Orgs/Journal.org" 'top)
+      '(("Journal" ?j "* %U %? %^g" "~/Orgs/Journal.org" 'top)
        ("todo" ?t "* TODO %?\n  %i\n  %a" "~/Orgs/Tasks.org" "Tasks")
        ("notes" ?n "* %?\n  %i\n  %a" "~/Orgs/Notes.org" "Inbox and Notes")
        ))
