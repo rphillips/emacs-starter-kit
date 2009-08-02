@@ -10,8 +10,6 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 ;; Anything.
-(add-to-list 'load-path (concat vendor-dir "anything-config"))
-(require 'anything-config)
 (global-set-key (kbd "s-a") 'anything)
 
 (require 'descbinds-anything)
