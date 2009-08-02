@@ -9,9 +9,8 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+
 ;; Anything.
-(add-to-list 'load-path (concat vendor-dir "anything-config"))
-(require 'anything-config)
 (global-set-key (kbd "s-a") 'anything)
 
 (require 'descbinds-anything)
@@ -65,7 +64,9 @@
 (blink-cursor-mode nil)             
 
 ;; Color Theme
-(color-theme-zenburn)
+;; (color-theme-zenburn)
+(require 'color-theme)
+(color-theme-dark-blue2)
 
 ;; No tabs
 (setq-default indent-tabs-mode nil)
