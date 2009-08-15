@@ -66,7 +66,14 @@
 ;; Color Theme
 ;; (color-theme-zenburn)
 (require 'color-theme)
-(color-theme-dark-blue2)
+;; (color-theme-initialize)
+;; (color-theme-blackboard)
+(load "color-theme-tango.el")
+
+(if window-system
+      (color-theme-tango))
+(if (not (window-system))
+      (color-theme-tty-dark))
 
 ;; No tabs
 (setq-default indent-tabs-mode nil)
